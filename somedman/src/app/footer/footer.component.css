@@ -1,0 +1,44 @@
+.footer {
+    width: 100%;
+    left: 0px;
+    bottom: 0px;
+    height: 10%;
+    display: flex;
+    z-index: 3;
+    position: absolute;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: #fbfbfb;
+  }
+  .separator {
+    width: 95%;
+    height: 2%;
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 5px;
+    flex-direction: column;
+    background-color: #9e9b9b;
+  }
+  .footer-text {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+  }
+  .text {
+    color: #9e9b9b;
+    font-family: Ubuntu;
+  }
+  .icon1 {
+    fill: #fc0606;
+    width: 24px;
+    height: 24px;
+  }
+  .text1 {
+    color: #9e9b9b;
+    font-family: Ubuntu;
+  }
+  
