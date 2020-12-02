@@ -1,0 +1,77 @@
+.langing-page {
+    color: #ffffff;
+    width: 100%;
+    display: flex;
+    overflow: hidden;
+    flex-wrap: nowrap;
+    min-height: 100vh;
+    align-items: baseline;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #fdfdfd;
+  }
+  .hero-description {
+    width: 50%;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .hd-nav {
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+
+  .brand-name {
+    color: #080808;
+    font-size: 30px;
+    font-family: 'Big Shoulders Inline Text', cursive;
+  }
+
+  .hero-image {
+    width: 50%;
+    min-height: inherit;
+    display: flex;
+    flex-direction: column;
+}
+  .one-stop {
+    width: 50%;
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    color: #2b2b2b;
+    font-size: 40px;
+    text-align: center;
+    font-family: 'Major Mono Display', monospace;
+    margin-top: 20%;
+  }
+  
+  .hi-nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+  .nav-links {
+    color: #2b2b2b;
+    padding: 10px;
+    font-size: 30px;
+    font-family: 'Big Shoulders Inline Text', cursive;
+    cursor: default
+  }
+
+  .nav-links:hover {
+    background-color: #ddd;
+    cursor: default;
+    box-shadow: 5px 5px 10px 0px #ddd;
+  }
+  

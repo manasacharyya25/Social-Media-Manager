@@ -1,0 +1,104 @@
+.login {
+    color: #ffffff;
+    width: 100%;
+    display: flex;
+    overflow: auto;
+    flex-wrap: nowrap;
+    min-height: 100vh;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
+    background-color: #fdfdfd;
+  }
+  .container1 {
+    width: 50%;
+    height: 574px;
+    display: flex;
+    padding: 10px;
+    flex-wrap: nowrap;
+    box-shadow: 5px 5px 10px 0px #d4d4d4;
+    align-items: center;
+    border-color: #969191;
+    border-width: 1px;
+    border-radius: 10px;
+    flex-direction: column;
+    justify-content: flex-start;
+    border-top-width: 1px;
+    border-left-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+  }
+  .container2 {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .text {
+    font-size: 40px;
+  }
+  .text1 {
+    color: rgb(0, 0, 0);
+    font-family: Ubuntu;
+    font-weight: 900;
+  }
+  .container3 {
+    width: 568px;
+    height: 466px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+  }
+  .container4 {
+    width: 509px;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+  }
+  .icon {
+    width: 49px;
+    height: 49px;
+    margin: 10px;
+    padding: 8px;
+    border-width: 1px;
+    border-radius: 10px;
+  }
+
+  .icon:hover {
+      background-color: #ddd;
+      box-shadow: 5px 5px 10px 0px #ddd;
+  }
+
+  .btn:hover {
+    box-shadow: 5px 5px 10px 0px #ddd;
+  }
+  
+  .text2 {
+    font-size: 20px;
+  }
+  .text3 {
+    color: rgb(43, 43, 43);
+    font-family: Ubuntu;
+  }
+  .textinput {
+    color: #2b2b2b;
+    box-shadow: 5px 5px 10px 0px #d4d4d4;
+  }
+  .textinput1 {
+    box-shadow: 5px 5px 10px 0px #d4d4d4;
+  }
+  .text5 {
+    color: rgb(43, 43, 43);
+    font-family: Ubuntu;
+  }
+  .button {
+    font-size: 20px;
+    font-family: Ubuntu;
+    border-color: #646464;
+  }
+  
