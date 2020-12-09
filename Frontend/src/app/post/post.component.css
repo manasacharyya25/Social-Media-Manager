@@ -81,3 +81,9 @@
     flex-direction: column;
     padding-bottom: 0;
   }
+
+  .add:hover {
+    border: 1px #888888;
+    border-radius: 100%;
+    box-shadow: 5px 5px 10px 0px #d4d4d4;
+  }

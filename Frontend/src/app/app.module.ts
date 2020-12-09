@@ -9,6 +9,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { FooterComponent } from './footer/footer.component';
 import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LoginComponent } from './login/login.component';
+import { SubscriptionComponent } from './subscription/subscription.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { LoginComponent } from './login/login.component';
     SettingsComponent,
     FooterComponent,
     LandingPageComponent,
-    LoginComponent
+    LoginComponent,
+    SubscriptionComponent
   ],
   imports: [
     BrowserModule,
