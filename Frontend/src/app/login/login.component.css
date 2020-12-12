@@ -1,10 +1,10 @@
 .login {
     color: #ffffff;
     width: 100%;
+    height: 100vh;
     display: flex;
     overflow: auto;
     flex-wrap: nowrap;
-    min-height: 100vh;
     align-items: center;
     flex-direction: row;
     justify-content: center;
@@ -12,32 +12,30 @@
   }
   .container1 {
     width: 50%;
-    height: 574px;
     display: flex;
-    padding: 10px;
+    padding: 1rem;
+    padding-bottom: 2rem;
     flex-wrap: nowrap;
-    box-shadow: 5px 5px 10px 0px #d4d4d4;
+    box-shadow: 1rem 1rem 2rem 0rem #d4d4d4;
     align-items: center;
     border-color: #969191;
-    border-width: 1px;
-    border-radius: 10px;
+    border-width: 1rem;
+    border-radius: 1rem;
     flex-direction: column;
     justify-content: flex-start;
-    border-top-width: 1px;
-    border-left-width: 1px;
-    border-right-width: 1px;
-    border-bottom-width: 1px;
+    border-top-width: 1rem;
+    border-left-width: 1rem;
+    border-right-width: 1rem;
+    border-bottom-width: 1rem;
   }
-  .container2 {
-    width: 100%;
-    height: 100px;
+  .container2 { 
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: center;
   }
   .text {
-    font-size: 40px;
+    font-size: 3rem;
   }
   .text1 {
     color: rgb(0, 0, 0);
@@ -45,41 +43,37 @@
     font-weight: 900;
   }
   .container3 {
-    width: 568px;
-    height: 466px;
+    width: 90%;
     display: flex;
     align-items: center;
     flex-direction: column;
     justify-content: space-around;
   }
   .container4 {
-    width: 509px;
-    height: 100px;
     display: flex;
     align-items: center;
     flex-direction: row;
     justify-content: space-around;
   }
   .icon {
-    width: 49px;
-    height: 49px;
-    margin: 10px;
-    padding: 8px;
-    border-width: 1px;
-    border-radius: 10px;
+    width: 3rem;
+    height: 3rem;
+    margin: 3rem;
+    padding: .4rem;
+    border-radius: .7rem;
   }
 
   .icon:hover {
       background-color: #ddd;
-      box-shadow: 5px 5px 10px 0px #ddd;
+      box-shadow: .4rem .4rem .6rem 0rem #ddd;
   }
 
   .btn:hover {
-    box-shadow: 5px 5px 10px 0px #ddd;
+    box-shadow: .4rem .4rem .6rem 0rem #ddd;
   }
   
   .text2 {
-    font-size: 20px;
+    font-size: 2rem;
   }
   .text3 {
     color: rgb(43, 43, 43);
@@ -87,18 +81,13 @@
   }
   .textinput {
     color: #2b2b2b;
-    box-shadow: 5px 5px 10px 0px #d4d4d4;
+    box-shadow: 5rem 5rem 10rem 0rem #d4d4d4;
   }
   .textinput1 {
-    box-shadow: 5px 5px 10px 0px #d4d4d4;
+    box-shadow: 5rem 5rem 10rem 0rem #d4d4d4;
   }
   .text5 {
     color: rgb(43, 43, 43);
     font-family: Ubuntu;
+    margin-bottom: .5rem;
   }
-  .button {
-    font-size: 20px;
-    font-family: Ubuntu;
-    border-color: #646464;
-  }
-  

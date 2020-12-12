@@ -1,6 +1,23 @@
 /* You can add global styles to this file, and also import other style files */
-body {
+html {
     width: 100%;
     height: 100%;
     background-color: #fbfbfb;
+    font-size: 100%;
+}
+
+@media(max-width: 768px) {
+    html {
+        font-size: 70%;
+    }
+}
+
+@media(max-width: 430px) {
+    html {
+        font-size: 50%;
+    }
+
+    input {
+        width: 70%;
+    }
 }
