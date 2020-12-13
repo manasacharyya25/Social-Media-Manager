@@ -1,13 +1,11 @@
 .post {
-    width: 100%;
-    height: 100%;
     display: flex;
-    padding: 10%;
-    flex-wrap: wrap;
+    padding: 2rem;
+    flex-wrap: nowrap;
     align-items: center;
     align-content: stretch;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     background-color: #ffffff;
     grid-template-columns: 1fr 1fr;
     overflow-y: scroll;
@@ -44,31 +42,53 @@
   }
   .share-with {
     width: 250px;
-    height: 30px;
+    height: 1.8rem;
     display: flex;
     align-items: flex-start;
     flex-direction: row;
     justify-content: space-around;
   }
   .fb {
-    width: 26px;
-    height: 26px;
+    width: 1.8rem;
+    height: 1.8rem;
+    padding: .2rem;
+    border-radius: .2rem;
+  }
+
+  .fb:hover {
+    background-color: #ddd;
+    box-shadow: 1px 1px 5px 0px #d4d4d4;
   }
   .insta {
-    width: 30px;
-    height: 30px;
+    width: 2rem;
+    height: 2rem;
+    padding: .2rem;
+    border-radius: .2rem;
   }
+
+  .insta:hover {
+    background-color: #ddd;
+    box-shadow: 1px 1px 5px 0px #d4d4d4;
+  }
+
   .gplus {
-    width: 30px;
-    height: 30px;
+    width: 2rem;
+    height: 2rem;
+    padding: .2rem;
+    border-radius: .2rem;
   }
+
+  .gplus:hover {
+    background-color: #ddd;
+    box-shadow: 1px 1px 5px 0px #d4d4d4;
+  }
+
   .text-div {
     display: flex;
     align-items: flex-start;
     flex-direction: column;
     justify-content: flex-start;
-    width: 450px;
-    height: 300px;
+    margin-left: 2rem;
   }
 
   .post-button {
@@ -86,4 +106,38 @@
     border: 1px #888888;
     border-radius: 100%;
     box-shadow: 5px 5px 10px 0px #d4d4d4;
+  }
+
+  @media(max-width: 768px) {
+    .post {
+      flex-direction: column;
+    }
+
+    .image {
+      width: 17rem;
+      height: 250px;
+    }
+    .share-with {
+      width: 17rem;
+    }
+    .text-div {
+      margin-top: 3rem;
+    }
+  }
+
+  @media(max-width: 430px) {
+    .image {
+      width: 20rem;
+      height: 200px;
+    }
+    .share-with {
+      width: 20rem;
+    }
+    .text-div {
+      margin-top: 3rem;
+    }
+  }
+
+  textarea {
+    resize: none;
   }

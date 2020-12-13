@@ -1,36 +1,37 @@
 .side-bar {
-    width: 269px;
+    width: 19rem;
     height: 100vh;
     display: flex;
     flex-wrap: nowrap;
-    box-shadow: 5px 5px 10px 10px #d4d4d4;
+    box-shadow: .4rem .4rem .6rem 0rem #ddd;
+
     align-items: center;
     flex-direction: column;
     justify-content: space-between;
   }
   .integrate-link {
-    width: 200px;
-    height: 100px;
+    width: 12.5rem;
+    height: 6.25rem;
     display: flex;
-    padding: 10px;
+    padding: 0.6rem;
     align-items: flex-start;
-    margin-bottom: 50px;
+    margin-bottom: 3rem;
     flex-direction: row;
     justify-content: space-between;
   }
   .integrate-link1 {
-    width: 200px;
-    height: 100px;
+    width: 12.5rem;
+    height: 6.25rem;
     display: flex;
-    padding: 10px;
+    padding: 0.6rem;
     margin-top: 0;
     align-items: center;
     margin-left: 0;
     border-color: #0f0f0f;
     border-width: 1px;
     margin-right: 0;
-    border-radius: 10px;
-    margin-bottom: 5px;
+    border-radius: 0.6rem;
+    margin-bottom: 0.3rem;
     flex-direction: row;
     justify-content: space-between;
   }
@@ -38,15 +39,15 @@
       background-color: #ddd;
   }
   .icon {
-    width: 24px;
-    height: 24px;
+    width: 1.5rem;
+    height: 1.5rem;
   }
   
   .integrate-link7 {
-    width: 200px;
-    height: 100px;
+    width: 12.5rem;
+    height: 6.25rem;
     display: flex;
-    padding: 10px;
+    padding: 0.6rem;
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
