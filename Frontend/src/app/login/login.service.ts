@@ -3,7 +3,12 @@ import {SocialUser} from 'angularx-social-login';
 
 @Injectable({providedIn: 'root'})
 export class LoginService {
+    facebookAccessToken: string;
+
     outputUserInformation(user: SocialUser) : void {
-        console.log(user.firstName + user.email);
+        if (user.provider == 'FACEBOOK') {
+            this.facebookAccessToken = user.authToken;
+        }
+        console.log(user);
     }
 }

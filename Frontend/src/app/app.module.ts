@@ -22,7 +22,7 @@ import { GoogleLoginProvider } from 'angularx-social-login';
     FooterComponent,
     LandingPageComponent,
     LoginComponent,
-    SubscriptionComponent
+    SubscriptionComponent,
   ],
   imports: [
     BrowserModule,

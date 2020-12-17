@@ -21,6 +21,7 @@
     "@angular/router": "~10.0.0",
     "angularx-social-login": "^3.5.4",
     "bootstrap": "^4.5.3",
+    "ngx-facebook": "^3.0.0-0",
     "nvm": "0.0.4",
     "rxjs": "~6.5.5",
     "tslib": "^2.0.0",
