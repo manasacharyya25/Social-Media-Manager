@@ -4,7 +4,7 @@ import { LandingPageComponent } from './landing-page/landing-page.component';
 import { LoginComponent } from './login/login.component';
 import { PostComponent } from './post/post.component';
 
-import { AuthenticationGuard } from './AuthenticationGuard.service';
+import { AuthenticationGuard } from './authenticationGuard';
 import { SubscriptionComponent } from './subscription/subscription.component';
 
 

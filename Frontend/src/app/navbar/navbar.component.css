@@ -35,6 +35,16 @@
     justify-content: flex-end;
     background-color: #ffffff;
   }
+
+  .navbar-links>.navbar-icon {
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+  }
+
+  .navbar-links>.navbar-icon:hover {
+    background-color: #ddd;
+    box-shadow: 0.3rem 0.3rem 0.6rem 0rem #d4d4d4;
+  }
   .icon {
     fill: #171718;
     width: 3.75rem;

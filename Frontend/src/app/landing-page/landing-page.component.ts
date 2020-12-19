@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../authenticationService';
 
 @Component({
   selector: 'app-landing-page',
@@ -8,9 +9,12 @@ import { Router } from '@angular/router';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private authService: AuthenticationService, private router: Router) { }
 
   ngOnInit(): void {
+    if(this.authService.isLoggedIn()){
+      this.router.navigate(['post']);
+    }
   }
 
   loginPage() {

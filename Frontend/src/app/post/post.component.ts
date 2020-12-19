@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NavbarService } from '../navbar/navbar.service';
 
 @Component({
   selector: 'app-post',
@@ -6,10 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./post.component.css']
 })
 export class PostComponent implements OnInit {
+  isSettingsEnabled: boolean;
 
-  constructor() { }
+  constructor(private navbarService: NavbarService) { }
 
   ngOnInit(): void {
+    this.navbarService.settingsEnabled.subscribe(didSettingsEnable => {this.isSettingsEnabled = didSettingsEnable});
   }
 
 }

@@ -153,3 +153,9 @@
   textarea {
     resize: none;
   }
+
+  .settings-bar {
+    position: absolute;
+    right: 0rem;
+    z-index: 2;
+  }
