@@ -6,6 +6,11 @@ html {
     font-size: 100%;
 }
 
+a, a:hover, a:visited {
+    color: inherit;
+    text-decoration: inherit;
+}
+
 @media(max-width: 768px) {
     html {
         font-size: 70%;

@@ -46,7 +46,7 @@
         <button class="btn btn-dark">Post</button>
       </div>
     </div>
-    <div class="settings-bar" *ngIf="isSettingsEnabled">
+    <div class="settings-bar animate__animated animate__fadeInDown" *ngIf="isSettingsEnabled">
       <app-settings></app-settings>
     </div>
   </div>
@@ -57,5 +57,5 @@
 
 </div>
 
-<div class="overlay-container" *ngIf="isSettingsEnabled"></div>
+<div class="overlay-container animate__animated animate__fadeIn" *ngIf="isSettingsEnabled"></div>
 
