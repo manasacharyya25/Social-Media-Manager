@@ -91,3 +91,17 @@
     font-family: Ubuntu;
     margin-bottom: .5rem;
   }
+
+  @media(max-width: 550px) {
+    .icon {
+      width: 2rem;
+      height: 2rem;
+      margin: 2rem;
+      padding: .2rem;
+      border-radius: .4rem;
+    }
+
+    .text2 {
+      font-size: 1.6rem;
+    }
+}

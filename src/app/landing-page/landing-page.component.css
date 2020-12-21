@@ -83,7 +83,7 @@ img {
   bottom: 0rem;
 }
 
-@media(max-width:430px) {
+@media(max-width:768px) {
   .langing-page {
     margin: 0rem;
   }

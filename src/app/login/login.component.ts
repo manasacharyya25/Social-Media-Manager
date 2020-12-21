@@ -35,6 +35,12 @@ export class LoginComponent implements OnInit {
     this.fb.login().then((response)=>this.handleFbLogin(response));
   }
 
+  signInWithCredentials(): void {
+    console.log("Clicked");
+    localStorage.setItem("IsLoggedIn", "true");
+    this.router.navigate(['post']);
+  }
+
   handleFbLogin(response) {
     localStorage.setItem("IsLoggedIn", "true");
     localStorage.setItem("fb_access_token", response);
