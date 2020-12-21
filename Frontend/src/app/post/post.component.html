@@ -1,6 +1,8 @@
 <div class="container">
 
-  <app-navbar></app-navbar>
+  <div class="app-navbar">
+    <app-navbar></app-navbar>
+  </div>
 
   <div class="post">
     <div class="photo-div">
@@ -49,8 +51,11 @@
     </div>
   </div>
 
-  <app-footer></app-footer>
+  <div class="app-footer">
+    <app-footer></app-footer>
+  </div>
 
 </div>
 
+<div class="overlay-container" *ngIf="isSettingsEnabled"></div>
 
