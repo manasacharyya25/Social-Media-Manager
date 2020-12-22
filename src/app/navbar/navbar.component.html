@@ -5,7 +5,7 @@
       <br />
     </span>
     <div class="navbar-links">
-        <span class="navbar-icon mx-2"><img src="assets/profile.png" alt="profile" height="40px"></span>
+        <span class="navbar-icon mx-2"><img [src]="user_photoUrl" alt="profile" height="40px"></span>
         <span class="navbar-icon mx-4" (click)="onSettingsClicked()"><img src="assets/settings.png" alt="settings" height="40px"></span>
         <span class="navbar-icon" (click)="logout()"><img src="assets/logout.png" alt="logout" height="40px"></span>
     </div>

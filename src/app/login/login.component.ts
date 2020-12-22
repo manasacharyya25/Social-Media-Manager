@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { SocialAuthService } from "angularx-social-login";
-import { GoogleLoginProvider } from "angularx-social-login";
-import { FacebookService, InitParams } from "ngx-facebook";
-import { LoginService } from './login.service'
+import { AuthenticationService } from '../authenticationService';
 
 
 @Component({
@@ -13,26 +10,17 @@ import { LoginService } from './login.service'
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private authService: SocialAuthService, private fb: FacebookService, private loginService: LoginService, private router: Router) { }
+  constructor(private router: Router, private authService: AuthenticationService) { }
 
   ngOnInit() {
-    this.authService.authState.subscribe((user) => this.loginService.outputUserInformation(user));
-
-    const initParams: InitParams = {
-      appId: '836109743840031',   //Test App ID. Needs to change once Live 
-      xfbml: true,
-      version: 'v9.0'
-    };
-
-    this.fb.init(initParams);
+    if (this.authService.isLoggedIn())
+    {
+      this.router.navigate(['post']);
+    }
   }
 
-  signInWithGoogle() : void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
-
-  signInWithFacebook(): void {
-    this.fb.login().then((response)=>this.handleFbLogin(response));
+  socialSignIn(platform: String) {
+    this.authService.login(platform);
   }
 
   signInWithCredentials(): void {
@@ -41,17 +29,5 @@ export class LoginComponent implements OnInit {
     this.router.navigate(['post']);
   }
 
-  handleFbLogin(response) {
-    localStorage.setItem("IsLoggedIn", "true");
-    localStorage.setItem("fb_access_token", response);
-    this.router.navigate(['post']);
-  }
-
-  getFbInfo(): void {
-    this.fb.api('/me/feed').then((response)=>console.log(response));
-  }
-
-  signOutFb(): void {
-    localStorage.removeItem("IsLoggedIn");
-  }
+  
 }
