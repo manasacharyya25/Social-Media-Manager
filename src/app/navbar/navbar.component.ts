@@ -2,7 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
 import { AuthenticationService } from '../authenticationService';
 import { NavbarService } from './navbar.service';
-import { User } from '../common/user.model';
 
 @Component({
   selector: 'app-navbar',

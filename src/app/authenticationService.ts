@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { SocialAuthService } from "angularx-social-login";
@@ -9,9 +10,12 @@ import { User } from './common/user.model';
 @Injectable({providedIn: 'root'})
 export class AuthenticationService
 {
+    newUser: User;
+
     constructor(private socialAuthService: SocialAuthService,
         private fb: FacebookService, 
-        private router: Router) {
+        private router: Router,
+        private httpClient: HttpClient) {
             const initParams: InitParams = {
                 appId: '836109743840031',   //Test App ID. Needs to change once Live 
                 xfbml: true,
@@ -19,10 +23,9 @@ export class AuthenticationService
             };
             this.fb.init(initParams);
             this.socialAuthService.authState.subscribe((user) => this.handleGoogleLogin(user));
+            this.httpClient = httpClient;
         }
     
-    userLoggedIn = new Subject<User>();
-
     isLoggedIn(): boolean {
         if (localStorage.getItem("IsLoggedIn")==="true"){
             return true;
@@ -60,9 +63,18 @@ export class AuthenticationService
     }
 
     handleGoogleLogin(response) {
+        this.newUser = new User(response.name, response.email, response.photoUrl, response.id, response.provider);
+
+
         localStorage.setItem("IsLoggedIn", "true");
         localStorage.setItem("google_access_token", response);
         this.storeUserInformation(response.name, response.email, response.photoUrl);
+        // console.log(response); 
+
+        this.httpClient.post(
+            'http://localhost:8080/users/login', 
+            this.newUser
+        ).subscribe( response => {console.log(response)});
         this.router.navigate(['post']);
     }
     

@@ -1,12 +1,16 @@
 export class User 
 {
-    name: String;
+    userName: String;
     email: String;
     photoUrl: String;
+    userId: String;
+    provider: String;
 
-    constructor(name, email, photoUrl) {
-        this.name = name;
+    constructor(name, email, photoUrl, userId, provider) {
+        this.userName = name;
         this.email =  email;
         this.photoUrl = photoUrl;
+        this.userId = userId;
+        this.provider = provider;
     }
 }
