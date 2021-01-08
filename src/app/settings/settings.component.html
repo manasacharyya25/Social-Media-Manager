@@ -8,8 +8,11 @@
         ></path>
       </svg>
       <div class="custom-control custom-switch">
-        <input type="checkbox" class="custom-control-input" id="customSwitch1">
-        <label class="custom-control-label" for="customSwitch1"></label>
+        <input type="checkbox" class="custom-control-input" id="facebook" 
+              (click)="integratePlatform($event)" 
+              [checked]="userSettings.facebookIntegrated">
+
+        <label class="custom-control-label" for="facebook"></label>
       </div>
     </div>
 
@@ -21,8 +24,10 @@
         ></path>
       </svg>
       <div class="custom-control custom-switch">
-        <input type="checkbox" class="custom-control-input" id="customSwitch2">
-        <label class="custom-control-label" for="customSwitch2"></label>
+        <input type="checkbox" class="custom-control-input" id="instagram" 
+              (click)="integratePlatform($event)"
+              [checked]="userSettings.instagramIntegrated">
+        <label class="custom-control-label" for="instagram"></label>
       </div>
     </div>
 
@@ -34,8 +39,10 @@
         ></path>
       </svg>
       <div class="custom-control custom-switch">
-        <input type="checkbox" class="custom-control-input" id="customSwitch3">
-        <label class="custom-control-label" for="customSwitch3"></label>
+        <input type="checkbox" class="custom-control-input" id="tumblr" 
+              (click)="integratePlatform($event)"
+              [checked]="userSettings.tumblrIntegrated">
+        <label class="custom-control-label" for="tumblr"></label>
       </div>
     </div>
 
@@ -47,8 +54,10 @@
         ></path>
       </svg>
       <div class="custom-control custom-switch">
-        <input type="checkbox" class="custom-control-input" id="customSwitch4">
-        <label class="custom-control-label" for="customSwitch4"></label>
+        <input type="checkbox" class="custom-control-input" id="twitter" 
+              (click)="integratePlatform($event)"
+              [checked]="userSettings.twitterIntegrated">
+        <label class="custom-control-label" for="twitter"></label>
       </div>
     </div>
 
@@ -60,8 +69,10 @@
         ></path>
       </svg>
       <div class="custom-control custom-switch">
-        <input type="checkbox" class="custom-control-input" id="customSwitch5">
-        <label class="custom-control-label" for="customSwitch5"></label>
+        <input type="checkbox" class="custom-control-input" id="reddit" 
+              (click)="integratePlatform($event)"
+              [checked]="userSettings.redditIntegrated">
+        <label class="custom-control-label" for="reddit"></label>
       </div>
     </div>
 
@@ -73,8 +84,10 @@
         ></path>
       </svg>
       <div class="custom-control custom-switch">
-        <input type="checkbox" class="custom-control-input" id="customSwitch6">
-        <label class="custom-control-label" for="customSwitch6"></label>
+        <input type="checkbox" class="custom-control-input" id="linkedin" 
+              (click)="integratePlatform($event)"
+              [checked]="userSettings.linkedinIntegrated">
+        <label class="custom-control-label" for="linkedin"></label>
       </div>
     </div>
 

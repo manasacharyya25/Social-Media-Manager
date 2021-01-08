@@ -74,7 +74,9 @@ export class AuthenticationService
         this.httpClient.post(
             'http://localhost:8080/users/login', 
             this.newUser
-        ).subscribe( response => {console.log(response)});
+        ).subscribe( response => {
+            localStorage.setItem("user_id", response.toString());
+        });
         this.router.navigate(['post']);
     }
     
