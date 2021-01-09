@@ -44,6 +44,34 @@
     flex-direction: column;
     justify-content: center;
   }
+
+  .selectedImage {
+    height: inherit;
+    width: inherit;
+    border-radius: 10px;
+    margin: 0.1rem;
+    transition: transform 0.3s;
+    box-shadow: 5px 5px 10px 0px #d4d4d4;
+    position: absolute;
+  }
+
+  .selectedImage:hover {
+    transform: translate(-0.1rem, -0.3rem);
+    box-shadow: 10px 10px 10px 0px #d4d4d4;
+    border: 0.3px #ddd;
+  }
+
+  .close {
+    position: relative;
+    z-index: 3;
+    color: red;
+    top: -9.5rem;
+    right: -8rem;
+    border: #ddd;
+    background-color: #fdfdfd;
+    border-width: 1rem;
+    border-radius: 100px;;
+  }
   .add {
     fill: #918e8e;
     width: 50px;

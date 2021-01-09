@@ -7,7 +7,12 @@
   <div class="post">
     <div class="photo-div">
       <div class="image">
-        <svg viewBox="0 0 1024 1024" class="thqIcon add">
+        <img [src]="selectedImageUrl" class="selectedImage" *ngIf="fileSelected"/>
+        <button type="button" class="close" aria-label="Close" *ngIf="fileSelected" (click)="clearSelectedFile()">
+          &times;
+        </button>
+        <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileSelect/>
+        <svg viewBox="0 0 1024 1024" class="thqIcon add" (click)="fileSelect.click()" *ngIf="!fileSelected">
           <title>plus</title>
           <path
             d="M992 384h-352v-352c0-17.672-14.328-32-32-32h-192c-17.672 0-32 14.328-32 32v352h-352c-17.672 0-32 14.328-32 32v192c0 17.672 14.328 32 32 32h352v352c0 17.672 14.328 32 32 32h192c17.672 0 32-14.328 32-32v-352h352c17.672 0 32-14.328 32-32v-192c0-17.672-14.328-32-32-32z"

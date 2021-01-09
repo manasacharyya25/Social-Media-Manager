@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   }
 
   signInWithCredentials(): void {
-    console.log("Clicked");
     localStorage.setItem("IsLoggedIn", "true");
     this.router.navigate(['post']);
   }

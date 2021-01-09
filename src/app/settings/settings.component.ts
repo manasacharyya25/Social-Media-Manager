@@ -15,6 +15,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   constructor(private httpClient: HttpClient) { 
     this.userId = +localStorage.getItem("user_id");
+    this.userSettings = new UserSettings(this.userId);
   }
 
   ngOnInit(): void {
