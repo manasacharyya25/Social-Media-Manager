@@ -12,7 +12,8 @@ import { LoginComponent } from './login/login.component';
 import { SubscriptionComponent } from './subscription/subscription.component';
 import { SocialLoginModule, SocialAuthServiceConfig } from 'angularx-social-login';
 import { GoogleLoginProvider } from 'angularx-social-login';
-import { HttpClientModule } from '@angular/common/http'
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { HttpClientModule } from '@angular/common/http'
     BrowserModule,
     AppRoutingModule,
     SocialLoginModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [
     {

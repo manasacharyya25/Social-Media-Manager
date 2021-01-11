@@ -7,8 +7,8 @@
   <div class="post">
     <div class="photo-div">
       <div class="image">
-        <img [src]="selectedImageUrl" class="selectedImage" *ngIf="fileSelected"/>
-        <button type="button" class="close" aria-label="Close" *ngIf="fileSelected" (click)="clearSelectedFile()">
+        <img [src]="post.image" class="selectedImage" *ngIf="fileSelected"/>
+        <button type="button" class="close" aria-label="Close" *ngIf="fileSelected" (click)="clearSelectedFile()                                                                                                                                                                                                                                                                        ">
           &times;
         </button>
         <input type="file" (change)="onFileSelected($event)" style="display: none;" #fileSelect/>
@@ -42,12 +42,12 @@
     </div>
     <div class="text-div">
       <form>
-          <input type="text" class="form-control m-2" id="caption" placeholder="Your thoughtfull Caption" size="100">
-          <textarea class="form-control m-2" id="blog" placeholder="Got more to say ? Write along.. " rows="5"></textarea>
-          <textarea class="form-control m-2" id="hashtags" placeholder="Go make your post #viral"></textarea>
+          <input type="text" class="form-control m-2" id="caption" placeholder="Your thoughtfull Caption" size="100" [(ngModel)]="post.caption" name="caption">
+          <textarea class="form-control m-2" id="blog" placeholder="Got more to say ? Write along.. " rows="5" [(ngModel)]="post.content" name="content"></textarea>
+          <textarea class="form-control m-2" id="hashtags" placeholder="Go make your post #viral" [(ngModel)]="post.tags" name="tags"></textarea>
       </form>
 
-      <div class="post-button">
+      <div class="post-button" (click)="onPostClicked()">
         <button class="btn btn-dark">Post</button>
       </div>
     </div>
