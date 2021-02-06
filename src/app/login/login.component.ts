@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../authenticationService';
+import { SocialService } from '../socialService';
 
 
 @Component({
@@ -10,7 +10,7 @@ import { AuthenticationService } from '../authenticationService';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private router: Router, private authService: AuthenticationService) { }
+  constructor(private router: Router, private authService: SocialService) { }
 
   ngOnInit() {
     if (this.authService.isLoggedIn())

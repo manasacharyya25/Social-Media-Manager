@@ -2,6 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserSettings } from 'src/app/common/user_settings.model';
 import { User } from '../common/user.model';
+import { AppConfiguration } from '../common/appConfiguration';
+import { SettingsService } from './settings.service';
 
 @Component({
   selector: 'app-settings',
@@ -13,7 +15,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
   userSettings: UserSettings;
   userId: number;
 
-  constructor(private httpClient: HttpClient) { 
+  constructor(private httpClient: HttpClient, private settingsService: SettingsService) { 
     this.userId = +localStorage.getItem("user_id");
     this.userSettings = new UserSettings(this.userId);
   }
@@ -29,7 +31,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   getUserSettings(user_id: number) : void {
     this.httpClient.get(
-      `http://localhost:8080/users/settings/${user_id}`
+      `${AppConfiguration.BACKEND_ENDPOINT}/users/settings/${user_id}`
     ).subscribe( (response: UserSettings) => {
       this.userSettings = response;
     })
@@ -39,7 +41,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     userSettings.userId =  this.userId;
 
     this.httpClient.post(
-      'http://localhost:8080/users/settings',
+      `${AppConfiguration.BACKEND_ENDPOINT}/users/settings`,
       userSettings
     ).subscribe((response: UserSettings) => {
       this.userSettings = response;
@@ -50,6 +52,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
     switch ($event.target.id) {
       case 'facebook':
         this.userSettings.facebookIntegrated = $event.target.checked;
+        this.settingsService.integrateFacebook();
         break;
       case 'instagram':
         this.userSettings.instagramIntegrated = $event.target.checked;
@@ -59,6 +62,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
         break;
       case 'tumblr':
         this.userSettings.tumblrIntegrated = $event.target.checked;
+        this.userSettings.integrateTumblr();
         break;
       case 'reddit':
         this.userSettings.redditIntegrated = $event.target.checked;

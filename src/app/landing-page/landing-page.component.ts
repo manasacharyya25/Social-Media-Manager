@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from '../authenticationService';
+import { SocialService } from '../socialService';
 
 @Component({
   selector: 'app-landing-page',
@@ -9,7 +9,7 @@ import { AuthenticationService } from '../authenticationService';
 })
 export class LandingPageComponent implements OnInit {
 
-  constructor(private authService: AuthenticationService, private router: Router) { }
+  constructor(private authService: SocialService, private router: Router) { }
 
   ngOnInit(): void {
     if(this.authService.isLoggedIn()){

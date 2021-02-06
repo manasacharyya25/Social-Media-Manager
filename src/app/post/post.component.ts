@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NavbarService } from '../navbar/navbar.service';
 import { Posts } from '../common/posts.model';
 import { PostService } from './post.service';
+import { FacebookService } from 'ngx-facebook';
+import { SocialService } from '../socialService';
 
 @Component({
   selector: 'app-post',
@@ -14,7 +16,7 @@ export class PostComponent implements OnInit {
   
   post: Posts;
 
-  constructor(private navbarService: NavbarService, private postService: PostService) { }
+  constructor(private navbarService: NavbarService, private postService: PostService, private authService: SocialService) { }
 
   ngOnInit(): void {
     this.navbarService.settingsEnabled.subscribe(didSettingsEnable => {this.isSettingsEnabled = didSettingsEnable});
@@ -27,7 +29,7 @@ export class PostComponent implements OnInit {
     this.fileSelected = true;
     
     const fileReader = new FileReader()
-    fileReader.readAsDataURL(selectedFile);
+     fileReader.readAsDataURL(selectedFile);
 
     fileReader.onload = event => {
       this.post.image = fileReader.result;

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Observable } from 'rxjs';
-import { AuthenticationService } from '../authenticationService';
+import { SocialService } from '../socialService';
 import { NavbarService } from './navbar.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { NavbarService } from './navbar.service';
 })
 export class NavbarComponent implements OnInit {
   @Input() title: string
-  constructor(private authService: AuthenticationService, private navbarService: NavbarService) { }
+  constructor(private authService: SocialService, private navbarService: NavbarService) { }
 
   isSettingsEnabled: boolean;
   user_name: string;
