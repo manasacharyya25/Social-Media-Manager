@@ -59,10 +59,11 @@ export class SettingsComponent implements OnInit, OnDestroy {
         break;
       case 'twitter':
         this.userSettings.twitterIntegrated = $event.target.checked;
+        this.settingsService.integrateTwitter();
         break;
       case 'tumblr':
         this.userSettings.tumblrIntegrated = $event.target.checked;
-        this.userSettings.integrateTumblr();
+        this.settingsService.integrateTumblr();
         break;
       case 'reddit':
         this.userSettings.redditIntegrated = $event.target.checked;

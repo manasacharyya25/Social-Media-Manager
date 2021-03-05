@@ -14,4 +14,8 @@ export class SettingsService {
     integrateTumblr(): void {
         this.socialService.integrateTumblr();
     }
+
+    integrateTwitter(): void {
+        this.socialService.integrateTwitter();
+    }
 }

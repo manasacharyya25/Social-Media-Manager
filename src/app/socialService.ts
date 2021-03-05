@@ -1,4 +1,4 @@
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders, JsonpClientBackend } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { SocialAuthService } from "angularx-social-login";
@@ -181,7 +181,30 @@ export class SocialService
      * Tumblr Integration
      */
     integrateTumblr() {
-        // TODO
+        const user_id = localStorage.getItem("user_id"); 
+
+        this.httpClient.get<string>(
+            `${AppConfiguration.BACKEND_ENDPOINT}/social/tumblr/initialize/${user_id}`,
+        ).subscribe( (response:any) => {
+            let authWindow = window.open(response.response, 'Authorize Access', 'height=570,width=520');
+
+            // TODO:    Add eventListener to authWindow. Close on url changed.
+        });
+    }
+
+    /**
+     * Twitter Integration
+     */
+    integrateTwitter() {
+        const user_id = localStorage.getItem("user_id"); 
+
+        this.httpClient.get<string>(
+            `${AppConfiguration.BACKEND_ENDPOINT}/social/twitter/initialize/${user_id}`,
+        ).subscribe( (response:any) => {
+            let authWindow = window.open(response.response, 'Authorize Access', 'height=570,width=520');
+
+            // TODO:    Add eventListener to authWindow. Close on url changed.
+        });
     }
     
     /**
