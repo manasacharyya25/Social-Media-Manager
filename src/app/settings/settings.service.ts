@@ -8,7 +8,7 @@ export class SettingsService {
     constructor(private httpClient: HttpClient, private socialService: SocialService) {}
 
     integrateFacebook(): void {
-        this.socialService.loginUsingFacebook();
+        this.socialService.integrateFacebook();
     }
 
     integrateTumblr(): void {

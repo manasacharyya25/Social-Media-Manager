@@ -1,5 +1,5 @@
 import { HttpClient, HttpHeaders, JsonpClientBackend } from "@angular/common/http";
-import { Injectable } from "@angular/core";
+import { Injectable, ɵNOT_FOUND_CHECK_ONLY_ELEMENT_INJECTOR } from "@angular/core";
 import { Router } from "@angular/router";
 import { SocialAuthService } from "angularx-social-login";
 import { GoogleLoginProvider } from "angularx-social-login";
@@ -14,6 +14,7 @@ export class SocialService
 
     constructor(private socialAuthService: SocialAuthService,
         private fbService: FacebookService, 
+        private fbIntegrator: FacebookService,
         private router: Router,
         private httpClient: HttpClient) {
             
@@ -24,6 +25,7 @@ export class SocialService
                 version: 'v9.0',
             };
             this.fbService.init(initParams);
+            this.fbIntegrator.init(initParams);
 
             //  2.  Subscribe to SocialAuthService  AuthStatus Change: Currently using for Google Sign In Only
             this.socialAuthService.authState.subscribe(response => {
@@ -109,12 +111,38 @@ export class SocialService
      */
     loginUsingFacebook() {
         const loginOptions: LoginOptions = {
-            scope: 'public_profile, email, pages_show_list, pages_read_engagement, pages_manage_posts',
+            scope: 'public_profile, email',
             return_scopes: true,
             enable_profile_selector: true
         };
 
         this.fbService.login(loginOptions).then((response)=>this.handleFbLogin(response));
+    }
+
+    integrateFacebook() {
+        const loginOptions: LoginOptions = {
+            scope: 'public_profile, email, pages_show_list, pages_read_engagement, pages_manage_posts',
+            return_scopes: true,
+            enable_profile_selector: true
+        };
+
+        this.fbIntegrator.login(loginOptions).then((response)=>this.handleFbIntegration(response));
+    }
+
+    handleFbIntegration(response) {
+        console.log(response);
+        const userId = localStorage.getItem("user_id");
+        const fbUserId = response.authResponse.userID;
+        const shortLivedUat = response.authResponse.accessToken;
+
+        let obj = {"userId": userId, "fbUserId": fbUserId, "uat": shortLivedUat}
+
+        this.httpClient.post(
+            `${AppConfiguration.BACKEND_ENDPOINT}/social/facebook/integrate`, obj
+        ).subscribe( (response:any) => {
+            console.log(response);
+        });        
+
     }
 
     async handleFbLogin(response) {
@@ -125,7 +153,7 @@ export class SocialService
         let user_name = null;
         let user_email = null;
         let user_photoUrl = null;
-        let user_accessToken = response.authTesponse.accessToken;
+        let user_accessToken = response.authResponse.accessToken;
 
         await this.fbService.api('/me', 'get', {"fields":"name,email"}).then(response => {
             user_name = response.name;
@@ -152,29 +180,6 @@ export class SocialService
         //  4.  Route to Post Page
         this.router.navigate(['post']);
 
-        /**
-         *          Test Facebook APIs after getting Access Tokens
-         */
-
-        // 1. Obtain Long Lived User Access Token:     
-        // 2. Obtain User Name, Email:              graphapi/me?fields=name,email           https://developers.facebook.com/docs/graph-api/reference/user
-        
-        
-        // 3. Obtain User Profile Pic URL:          graphapi/me/picture/                    https://developers.facebook.com/docs/graph-api/reference/user/picture/ 
-        //this.fbService.api('/me/picture?redirect=false','get', {"fields":"url"}).then(response => console.log("picture", response)).catch(error => console.log(error));
-        
-        // 4. Obtain Pages List and Access Token:   graphapi/accounts/                      https://developers.facebook.com/docs/pages/access-tokens    
-        // let page_id = null;
-        // let page_access_token = null;
-        
-        // this.fbService.api('/me/accounts', 'get', {"fields":"id,name,access_token"}).then(response => {
-        //     page_id = response.data[0].id;
-        //     page_access_token = response.data[0].access_token;
-
-        //     // 5. Make Post request to Page:            graphapi/{page_id}/feed                 https://developers.facebook.com/docs/pages/publishing/
-        //     this.fbService.api(`/${page_id}/feed`, 'post', {"message":"Somedman Posts", "access_token":page_access_token}).then(response => console.log(response));
-        //     this.fbService.api(`/${page_id}/photos`, 'post', {"url":"https://somedman.netlify.app/assets/hero-image.jpg", "caption":"Somedman Photos", "access_token":page_access_token}).then(response => console.log(response));
-        // });
     }
 
     /**
@@ -201,7 +206,33 @@ export class SocialService
         this.httpClient.get<string>(
             `${AppConfiguration.BACKEND_ENDPOINT}/social/twitter/initialize/${user_id}`,
         ).subscribe( (response:any) => {
-            let authWindow = window.open(response.response, 'Authorize Access', 'height=570,width=520');
+             let authWindow = window.open(response.response, 'Authorize Access', 'height=570,width=520');
+
+             setTimeout(() => authWindow.close(), 15000);
+            // // localStorage.setItem("url", response.response); 
+            // // let authWindow = window.open(`https://localhost:4200/popup`, '', 'height=570,width=520');
+            // authWindow.onclick = function(event) {
+            //     authWindow.opener.postMessage("Clicked");
+            // }
+            // authWindow.focus();
+
+            
+
+            // window.addEventListener('message', event => {console.log(event)})
+
+
+            // // authWindow.onload = function() {
+            // //     authWindow.opener.postMessage("message", "*");
+            // // }
+
+            // setTimeout(() => {
+            //     console.log("Posting");
+            //     authWindow.opener.postMessage(authWindow.location.href, "*");
+            //     authWindow.opener.alert("Will Close in 15secs");
+
+                
+            //     console.log("Posted");
+            // }, 10000);
 
             // TODO:    Add eventListener to authWindow. Close on url changed.
         });

@@ -7,7 +7,6 @@ import { PostComponent } from './post/post.component';
 import { AuthenticationGuard } from './authenticationGuard';
 import { SubscriptionComponent } from './subscription/subscription.component';
 
-
 const routes: Routes = [
   {
     path:'',
