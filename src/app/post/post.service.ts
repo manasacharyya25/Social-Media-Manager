@@ -5,14 +5,13 @@ import { AppConfiguration } from '../common/appConfiguration';
 
 @Injectable({providedIn: 'root'})
 export class PostService {
-    userId : string;
-
     constructor(private httpClient: HttpClient) {
-        this.userId = localStorage.getItem("user_id");
+        
     }
         
     publishPost(post: Posts): void {
-        post.userId = +this.userId;
+        var userId = localStorage.getItem("user_id");
+        post.userId = +userId;
 
         this.httpClient.post(
             `${AppConfiguration.BACKEND_ENDPOINT}/posts/publish`,
