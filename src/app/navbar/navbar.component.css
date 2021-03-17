@@ -208,7 +208,7 @@
   }
 
   @media(max-width:500px){
-    .navbar-links {
-      display: none;
+    .navbar-links>.navbar-icon>img {
+      height: 4rem;
     }
   }
