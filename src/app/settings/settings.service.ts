@@ -7,15 +7,15 @@ export class SettingsService {
 
     constructor(private httpClient: HttpClient, private socialService: SocialService) {}
 
-    integrateFacebook(): void {
-        this.socialService.integrateFacebook();
+    async integrateFacebook() {
+        await this.socialService.integrateFacebook();
     }
 
-    integrateTumblr(): void {
-        this.socialService.integrateTumblr();
+    async integrateTumblr() {
+        await this.socialService.integrateTumblr();
     }
 
-    integrateTwitter(): void {
-        this.socialService.integrateTwitter();
+    async integrateTwitter() {
+        await this.socialService.integrateTwitter();
     }
 }

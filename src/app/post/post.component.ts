@@ -12,6 +12,7 @@ import { SocialService } from '../socialService';
 })
 export class PostComponent implements OnInit {
   isSettingsEnabled: boolean;
+  isLoading: boolean;
   fileSelected: boolean;
   
   post: Posts;
@@ -20,6 +21,7 @@ export class PostComponent implements OnInit {
 
   ngOnInit(): void {
     this.navbarService.settingsEnabled.subscribe(didSettingsEnable => {this.isSettingsEnabled = didSettingsEnable});
+    
     this.post = new Posts();
   }
 
@@ -41,9 +43,11 @@ export class PostComponent implements OnInit {
     this.post.image = null;
   }
 
-  onPostClicked():void {
+  async onPostClicked() {
+    this.isLoading = true;
     if (this.post.image != null && this.post.caption.length != 0) {
-      this.postService.publishPost(this.post);
+      await this.postService.publishPost(this.post);
     }
+    this.isLoading = false;
   }
 }

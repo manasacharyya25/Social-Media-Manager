@@ -9,15 +9,15 @@ export class PostService {
         
     }
         
-    publishPost(post: Posts): void {
+    async publishPost(post: Posts) {
         var userId = localStorage.getItem("user_id");
         post.userId = +userId;
 
-        this.httpClient.post(
+        await this.httpClient.post(
             `${AppConfiguration.BACKEND_ENDPOINT}/posts/publish`,
             post
-        ).subscribe( response => {
+        ).toPromise().then( response => {
             console.log(response);
-        });
+        }).catch(error => console.log("error occured"));
     }
 }

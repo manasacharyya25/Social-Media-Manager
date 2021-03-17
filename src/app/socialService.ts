@@ -119,14 +119,14 @@ export class SocialService
         this.fbService.login(loginOptions).then((response)=>this.handleFbLogin(response));
     }
 
-    integrateFacebook() {
+    async integrateFacebook() {
         const loginOptions: LoginOptions = {
             scope: 'public_profile, email, pages_show_list, pages_read_engagement, pages_manage_posts',
             return_scopes: true,
             enable_profile_selector: true
         };
 
-        this.fbIntegrator.login(loginOptions).then((response)=>this.handleFbIntegration(response));
+        await this.fbIntegrator.login(loginOptions).then((response)=>this.handleFbIntegration(response));
     }
 
     handleFbIntegration(response) {
@@ -185,30 +185,31 @@ export class SocialService
     /**
      * Tumblr Integration
      */
-    integrateTumblr() {
+    async integrateTumblr() {
         const user_id = localStorage.getItem("user_id"); 
 
-        this.httpClient.get<string>(
+        await this.httpClient.get<string>(
             `${AppConfiguration.BACKEND_ENDPOINT}/social/tumblr/initialize/${user_id}`,
-        ).subscribe( (response:any) => {
+        ).toPromise().then( (response:any) => {
             let authWindow = window.open(response.response, 'Authorize Access', 'height=570,width=520');
 
             // TODO:    Add eventListener to authWindow. Close on url changed.
-        });
+        }).catch(error => window.alert("An Error Occured"));
     }
 
     /**
      * Twitter Integration
      */
-    integrateTwitter() {
+    async integrateTwitter() {
         const user_id = localStorage.getItem("user_id"); 
 
-        this.httpClient.get<string>(
+        await this.httpClient.get<string>(
             `${AppConfiguration.BACKEND_ENDPOINT}/social/twitter/initialize/${user_id}`,
-        ).subscribe( (response:any) => {
+        ).toPromise().then( (response:any) => {
              let authWindow = window.open(response.response, 'Authorize Access', 'height=570,width=520');
+             window.addEventListener('message', event => {console.log(event)});
 
-             setTimeout(() => authWindow.close(), 15000);
+            //  setTimeout(() => authWindow.close(), 15000);
             // // localStorage.setItem("url", response.response); 
             // // let authWindow = window.open(`https://localhost:4200/popup`, '', 'height=570,width=520');
             // authWindow.onclick = function(event) {
@@ -235,7 +236,7 @@ export class SocialService
             // }, 10000);
 
             // TODO:    Add eventListener to authWindow. Close on url changed.
-        });
+        }).catch(error => window.alert("An Error Occured"));
     }
     
     /**

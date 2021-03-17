@@ -11,7 +11,7 @@ import { SettingsService } from './settings.service';
   styleUrls: ['./settings.component.css']
 })
 export class SettingsComponent implements OnInit, OnDestroy {
-  
+  isLoading: boolean;
   userSettings: UserSettings;
   userId: number;
 
@@ -48,22 +48,23 @@ export class SettingsComponent implements OnInit, OnDestroy {
     })
   }
 
-  integratePlatform($event: any): void {
+  async integratePlatform($event: any) {
+    this.isLoading = true;
     switch ($event.target.id) {
       case 'facebook':
         this.userSettings.facebookIntegrated = $event.target.checked;
-        this.settingsService.integrateFacebook();
+        await this.settingsService.integrateFacebook();
         break;
       case 'instagram':
         this.userSettings.instagramIntegrated = $event.target.checked;
         break;
       case 'twitter':
         this.userSettings.twitterIntegrated = $event.target.checked;
-        this.settingsService.integrateTwitter();
+        await this.settingsService.integrateTwitter();
         break;
       case 'tumblr':
         this.userSettings.tumblrIntegrated = $event.target.checked;
-        this.settingsService.integrateTumblr();
+        await this.settingsService.integrateTumblr();
         break;
       case 'reddit':
         this.userSettings.redditIntegrated = $event.target.checked;
@@ -74,6 +75,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
       default:
         console.log($event);
     }
+    this.isLoading = false;
   }
 
 }
