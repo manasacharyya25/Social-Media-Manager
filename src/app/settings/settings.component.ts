@@ -49,28 +49,37 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   async integratePlatform($event: any) {
+    var platform = $event.target.id;
+    var pref = $event.target.checked;
+
     this.isLoading = true;
-    switch ($event.target.id) {
+    switch (platform) {
       case 'facebook':
-        this.userSettings.facebookIntegrated = $event.target.checked;
-        await this.settingsService.integrateFacebook();
+        this.userSettings.facebookIntegrated = pref;
+        if(pref) {
+          await this.settingsService.integrateFacebook();
+        }
         break;
       case 'instagram':
-        this.userSettings.instagramIntegrated = $event.target.checked;
+        this.userSettings.instagramIntegrated = pref;
         break;
       case 'twitter':
-        this.userSettings.twitterIntegrated = $event.target.checked;
-        await this.settingsService.integrateTwitter();
+        this.userSettings.twitterIntegrated = pref;
+        if(pref) {
+          await this.settingsService.integrateTwitter();
+        }
         break;
       case 'tumblr':
-        this.userSettings.tumblrIntegrated = $event.target.checked;
-        await this.settingsService.integrateTumblr();
+        this.userSettings.tumblrIntegrated = pref;
+        if(pref) {
+          await this.settingsService.integrateTumblr();
+        }
         break;
       case 'reddit':
-        this.userSettings.redditIntegrated = $event.target.checked;
+        this.userSettings.redditIntegrated = pref;
         break;
       case 'linkedin':
-        this.userSettings.linkedinIntegrated = $event.target.checked;
+        this.userSettings.linkedinIntegrated = pref;
         break;
       default:
         console.log($event);
