@@ -216,3 +216,14 @@
     left: 50%;
     z-index: 3;
   }
+
+  .overlay-alert-container {
+    position: fixed;
+    top: 12%;
+    left: 2%;
+    z-index: 2;
+    color: #fdfdfd;
+    background-color: #343A40;
+    border-color: #888888;
+    box-shadow: 1px 1px 5px 0px #d4d4d4
+  }

@@ -6,11 +6,15 @@ import { GoogleLoginProvider } from "angularx-social-login";
 import { FacebookService, InitParams, LoginOptions } from "ngx-facebook";
 import { AppConfiguration } from "./common/appConfiguration";
 import { User } from './common/user.model';
+import { Subject } from 'rxjs';
+import { WebResponse } from "./common/webResponse";
 
 @Injectable({providedIn: 'root'})
 export class SocialService
 {
     newUser: User;
+    platformIntegrated = new Subject<string>();
+    alertAvailable = new Subject<string>();
 
     constructor(private socialAuthService: SocialAuthService,
         private fbService: FacebookService, 
@@ -35,6 +39,32 @@ export class SocialService
                     }
                 }
             });
+
+            //3. Initialize Event Listener, to listen to Authorization Callbacks
+            window.addEventListener('message', event => {
+                console.log(event);
+                switch (event.data) {
+                    case "TUMBLR Integration SUCCESS":
+                        this.platformIntegrated.next("Tumblr,Success");
+                        this.alertAvailable.next("Tumblr Integrated");
+                        break;
+                    case "TUMBLR Integration FAILURE":
+                        this.platformIntegrated.next("Tumblr,Failure");
+                        this.alertAvailable.next("Tumblr Integration Failed");
+                        break;
+                    case "TWITTER Integration SUCCESS":
+                        this.platformIntegrated.next("Twitter,Success");
+                        this.alertAvailable.next("Twitter Integrated");
+                        break;
+                    case "TWITTER Integration FAILURE":
+                        this.platformIntegrated.next("Twitter,Failure");
+                        this.alertAvailable.next("Twitter Integration Failed");
+                        break;
+                    default:
+                        break;
+                }
+            });
+
         }
     
     login(platform: String): void {
@@ -126,22 +156,36 @@ export class SocialService
             enable_profile_selector: true
         };
 
-        await this.fbIntegrator.login(loginOptions).then((response)=>this.handleFbIntegration(response));
+        await this.fbIntegrator.login(loginOptions)
+        .then((response)=>this.handleFbIntegration(response))
+        .catch((error) => {this.platformIntegrated.next("Facebook,Reset")});
     }
 
     handleFbIntegration(response) {
-        console.log(response);
-        const userId = localStorage.getItem("user_id");
-        const fbUserId = response.authResponse.userID;
-        const shortLivedUat = response.authResponse.accessToken;
+        if (response.status === 'connected') {
+                const userId = localStorage.getItem("user_id");
+                const fbUserId = response.authResponse.userID;
+                const shortLivedUat = response.authResponse.accessToken;
 
-        let obj = {"userId": userId, "fbUserId": fbUserId, "uat": shortLivedUat}
+                let obj = {"userId": userId, "fbUserId": fbUserId, "uat": shortLivedUat}
 
-        this.httpClient.post(
-            `${AppConfiguration.BACKEND_ENDPOINT}/social/facebook/integrate`, obj
-        ).subscribe( (response:any) => {
-            console.log(response);
-        });        
+                this.httpClient.post(
+                    `${AppConfiguration.BACKEND_ENDPOINT}/social/facebook/integrate`, obj
+                ).toPromise().then( (response:WebResponse) => {
+                    if(response.responseCode === 'SUCCESS') {
+                        this.alertAvailable.next("Facebook Integrated");
+                    }else{
+                        this.platformIntegrated.next("Facebook,Failure");
+                        this.alertAvailable.next("Facebook Integration Failed !");
+                    }
+                }).catch(error => {
+                    this.platformIntegrated.next("Facebook,Failure");
+                    this.alertAvailable.next("Facebook Integration Failed !");
+                })
+        } else {
+            this.platformIntegrated.next("Facebook,Failure");
+        }
+               
 
     }
 
@@ -187,14 +231,13 @@ export class SocialService
      */
     async integrateTumblr() {
         const user_id = localStorage.getItem("user_id"); 
+        this.platformIntegrated.next("Tumblr,Reset");
 
         await this.httpClient.get<string>(
             `${AppConfiguration.BACKEND_ENDPOINT}/social/tumblr/initialize/${user_id}`,
         ).toPromise().then( (response:any) => {
-            let authWindow = window.open(response.response, 'Authorize Access', 'height=570,width=520');
-
-            // TODO:    Add eventListener to authWindow. Close on url changed.
-        }).catch(error => window.alert("An Error Occured"));
+            let authWindow = window.open(response.responseMessage, 'Authorize Access', 'height=570,width=520');
+        }).catch(error => this.alertAvailable.next("Tumblr Integration Failed !"));
     }
 
     /**
@@ -202,41 +245,15 @@ export class SocialService
      */
     async integrateTwitter() {
         const user_id = localStorage.getItem("user_id"); 
+        this.platformIntegrated.next("Twitter,Reset");
 
         await this.httpClient.get<string>(
             `${AppConfiguration.BACKEND_ENDPOINT}/social/twitter/initialize/${user_id}`,
         ).toPromise().then( (response:any) => {
-             let authWindow = window.open(response.response, 'Authorize Access', 'height=570,width=520');
-             window.addEventListener('message', event => {console.log(event)});
-
-            //  setTimeout(() => authWindow.close(), 15000);
-            // // localStorage.setItem("url", response.response); 
-            // // let authWindow = window.open(`https://localhost:4200/popup`, '', 'height=570,width=520');
-            // authWindow.onclick = function(event) {
-            //     authWindow.opener.postMessage("Clicked");
-            // }
-            // authWindow.focus();
-
-            
-
-            // window.addEventListener('message', event => {console.log(event)})
-
-
-            // // authWindow.onload = function() {
-            // //     authWindow.opener.postMessage("message", "*");
-            // // }
-
-            // setTimeout(() => {
-            //     console.log("Posting");
-            //     authWindow.opener.postMessage(authWindow.location.href, "*");
-            //     authWindow.opener.alert("Will Close in 15secs");
-
-                
-            //     console.log("Posted");
-            // }, 10000);
-
-            // TODO:    Add eventListener to authWindow. Close on url changed.
-        }).catch(error => window.alert("An Error Occured"));
+             let authWindow = window.open(response.responseMessage, 'Authorize Access', 'height=570,width=520');
+        }).catch(error => {
+            this.alertAvailable.next("Twitter Integration Failed !")
+        });
     }
     
     /**

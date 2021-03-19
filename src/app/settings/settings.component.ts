@@ -1,9 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { UserSettings } from 'src/app/common/user_settings.model';
-import { User } from '../common/user.model';
 import { AppConfiguration } from '../common/appConfiguration';
-import { SettingsService } from './settings.service';
+import { SocialService } from '../socialService';
 
 @Component({
   selector: 'app-settings',
@@ -15,9 +14,10 @@ export class SettingsComponent implements OnInit, OnDestroy {
   userSettings: UserSettings;
   userId: number;
 
-  constructor(private httpClient: HttpClient, private settingsService: SettingsService) { 
+  constructor(private httpClient: HttpClient, private socialService: SocialService) { 
     this.userId = +localStorage.getItem("user_id");
     this.userSettings = new UserSettings(this.userId);
+    this.socialService.platformIntegrated.subscribe((didPlatformIntegrate:String) => this.platformIntegrated(didPlatformIntegrate));
   }
 
   ngOnInit(): void {
@@ -57,22 +57,22 @@ export class SettingsComponent implements OnInit, OnDestroy {
       case 'facebook':
         this.userSettings.facebookIntegrated = pref;
         if(pref) {
-          await this.settingsService.integrateFacebook();
+          await this.socialService.integrateFacebook();
         }
         break;
       case 'instagram':
         this.userSettings.instagramIntegrated = pref;
         break;
       case 'twitter':
-        this.userSettings.twitterIntegrated = pref;
+        // this.userSettings.twitterIntegrated = pref;
         if(pref) {
-          await this.settingsService.integrateTwitter();
+          await this.socialService.integrateTwitter();
         }
         break;
       case 'tumblr':
         this.userSettings.tumblrIntegrated = pref;
         if(pref) {
-          await this.settingsService.integrateTumblr();
+          await this.socialService.integrateTumblr();
         }
         break;
       case 'reddit':
@@ -87,4 +87,35 @@ export class SettingsComponent implements OnInit, OnDestroy {
     this.isLoading = false;
   }
 
+  platformIntegrated(didPlatformIntegrate: String): void {
+    let response =  didPlatformIntegrate.split(',')
+    var platform = response[0];
+    var didIntegrate = response[1];
+
+    switch (platform) {
+      case 'Tumblr':
+          if (didIntegrate === 'Success') {
+            this.userSettings.tumblrIntegrated = true;
+          } else if (didIntegrate === 'Failure' || didIntegrate === 'Reset') {
+            this.userSettings.tumblrIntegrated = false;
+          }
+          break;
+      case 'Twitter':
+        if (didIntegrate === 'Success') {
+          this.userSettings.twitterIntegrated = true;
+        } else if (didIntegrate === 'Failure' || didIntegrate === 'Reset') {
+          this.userSettings.twitterIntegrated = false;
+        }
+        break;
+      case 'Facebook':
+        if (didIntegrate === 'Success') {
+          this.userSettings.facebookIntegrated = true;
+        } else if (didIntegrate === 'Failure' || didIntegrate === 'Reset') {
+          this.userSettings.facebookIntegrated = false;
+        }
+        break;
+      default:
+        break;
+    }
+  }
 }

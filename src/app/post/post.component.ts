@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NavbarService } from '../navbar/navbar.service';
 import { Posts } from '../common/posts.model';
 import { PostService } from './post.service';
-import { FacebookService } from 'ngx-facebook';
 import { SocialService } from '../socialService';
 
 @Component({
@@ -12,15 +11,18 @@ import { SocialService } from '../socialService';
 })
 export class PostComponent implements OnInit {
   isSettingsEnabled: boolean;
+  isAlertAvailable: boolean;
   isLoading: boolean;
   fileSelected: boolean;
   
   post: Posts;
+  alertMessage: String;
 
   constructor(private navbarService: NavbarService, private postService: PostService, private authService: SocialService) { }
 
   ngOnInit(): void {
     this.navbarService.settingsEnabled.subscribe(didSettingsEnable => {this.isSettingsEnabled = didSettingsEnable});
+    this.authService.alertAvailable.subscribe(message => this.showAlert(message));
     
     this.post = new Posts();
   }
@@ -46,8 +48,16 @@ export class PostComponent implements OnInit {
   async onPostClicked() {
     this.isLoading = true;
     if (this.post.image != null && this.post.caption.length != 0) {
-      await this.postService.publishPost(this.post);
+      await this.postService.publishPost(this.post).then(response => {
+        this.showAlert(response);
+      });
     }
     this.isLoading = false;
+  }
+
+  showAlert(message) {
+    this.alertMessage = message;
+    this.isAlertAvailable = true;
+    setTimeout(() => {this.isAlertAvailable = false}, 6000);
   }
 }
