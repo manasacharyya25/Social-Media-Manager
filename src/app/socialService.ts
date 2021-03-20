@@ -231,12 +231,12 @@ export class SocialService
      */
     async integrateTumblr() {
         const user_id = localStorage.getItem("user_id"); 
-        this.platformIntegrated.next("Tumblr,Reset");
 
         await this.httpClient.get<string>(
             `${AppConfiguration.BACKEND_ENDPOINT}/social/tumblr/initialize/${user_id}`,
         ).toPromise().then( (response:any) => {
-            let authWindow = window.open(response.responseMessage, 'Authorize Access', 'height=570,width=520');
+            this.platformIntegrated.next("Tumblr,Reset");
+            window.open(response.responseMessage, 'Authorize Access', 'height=570,width=520');
         }).catch(error => this.alertAvailable.next("Tumblr Integration Failed !"));
     }
 
@@ -245,12 +245,12 @@ export class SocialService
      */
     async integrateTwitter() {
         const user_id = localStorage.getItem("user_id"); 
-        this.platformIntegrated.next("Twitter,Reset");
 
         await this.httpClient.get<string>(
             `${AppConfiguration.BACKEND_ENDPOINT}/social/twitter/initialize/${user_id}`,
         ).toPromise().then( (response:any) => {
-             let authWindow = window.open(response.responseMessage, 'Authorize Access', 'height=570,width=520');
+            this.platformIntegrated.next("Twitter,Reset");
+            window.open(response.responseMessage, 'Authorize Access', 'height=570,width=520');
         }).catch(error => {
             this.alertAvailable.next("Twitter Integration Failed !")
         });

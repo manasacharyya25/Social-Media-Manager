@@ -16,7 +16,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
 
   constructor(private httpClient: HttpClient, private socialService: SocialService) { 
     this.userId = +localStorage.getItem("user_id");
-    this.userSettings = new UserSettings(this.userId);
+    // this.userSettings = new UserSettings(this.userId);
     this.socialService.platformIntegrated.subscribe((didPlatformIntegrate:String) => this.platformIntegrated(didPlatformIntegrate));
   }
 
@@ -64,7 +64,7 @@ export class SettingsComponent implements OnInit, OnDestroy {
         this.userSettings.instagramIntegrated = pref;
         break;
       case 'twitter':
-        // this.userSettings.twitterIntegrated = pref;
+        this.userSettings.twitterIntegrated = pref;
         if(pref) {
           await this.socialService.integrateTwitter();
         }
