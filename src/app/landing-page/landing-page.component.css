@@ -93,7 +93,7 @@ img {
 } */
 
 .landing-page {
-  color: #ffffff;
+  color: #fdfdfd;
   width: 100%;
   min-height: 100vh;
 }
@@ -133,7 +133,7 @@ img {
   top: 19rem;
   right: 0rem;
   width: 8rem;
-  position: absolute;
+  position: fixed;
   object-fit: cover;
 }
 
@@ -149,7 +149,7 @@ img {
   top: 13rem;
   right: 0rem;
   width: 14rem;
-  position: absolute;
+  position: fixed;
   object-fit: cover;
 }
 
@@ -164,7 +164,7 @@ img {
 
 .instagram {
   top: 20rem;
-  left: 65rem;
+  right: 25rem;
   height: 5rem;
   position: fixed;
   object-fit: cover;
@@ -172,7 +172,7 @@ img {
 
 .twitter {
   top: 10rem;
-  left: 85rem;
+  right: 5rem;
   height: 5rem;
   position: fixed;
   object-fit: cover;
@@ -180,7 +180,7 @@ img {
 
 .facebook {
   top: 6rem;
-  left: 70rem;
+  right: 20rem;
   height: 5rem;
   position: fixed;
   object-fit: cover;
