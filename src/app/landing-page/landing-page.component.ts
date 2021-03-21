@@ -20,4 +20,8 @@ export class LandingPageComponent implements OnInit {
   loginPage() {
     this.router.navigate(['login']);
   }
+
+  socialSignIn(platform: String) {
+    this.authService.login(platform);
+  }
 }
