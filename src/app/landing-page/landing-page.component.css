@@ -92,21 +92,24 @@ img {
   }
 } */
 
+.landing-page-container {
+  
+}
+
 .landing-page {
   color: #fdfdfd;
   width: 100%;
-  min-height: 100vh;
 }
 
 .top-banner {
-  position: fixed;
+  position: absolute;
   width: 100%;
   top: -5rem;
   object-fit: cover;
 }
 
 .logo {
-  position: fixed;
+  position: absolute;
   top: 0rem;
   width: 5rem;
   margin: 1rem;
@@ -114,10 +117,10 @@ img {
 }
 
 .banner-text {
-  top: 11rem;
+  bottom: 8rem;
   left: 8rem;
   height: 30rem;
-  position: fixed;
+  position: absolute;
   object-fit: cover;
 }
 
@@ -125,7 +128,7 @@ img {
   top: 22rem;
   right: 0rem;
   width: 5rem;
-  position: fixed;
+  position: absolute;
   object-fit: cover;
 }
 
@@ -133,7 +136,7 @@ img {
   top: 19rem;
   right: 0rem;
   width: 8rem;
-  position: fixed;
+  position: absolute;
   object-fit: cover;
 }
 
@@ -141,7 +144,7 @@ img {
   top: 16rem;
   right: 0rem;
   width: 11rem;
-  position: fixed;
+  position: absolute;
   object-fit: cover;
 }
 
@@ -149,15 +152,15 @@ img {
   top: 13rem;
   right: 0rem;
   width: 14rem;
-  position: fixed;
+  position: absolute;
   object-fit: cover;
 }
 
 .mobile-vector {
+  position: absolute;
   top: 10rem;
   right: 7rem;
   height: 40rem;
-  position: fixed;
   object-fit: cover;
 }
 
@@ -166,7 +169,7 @@ img {
   top: 20rem;
   right: 25rem;
   height: 5rem;
-  position: fixed;
+  position: absolute;
   object-fit: cover;
 }
 
@@ -174,7 +177,7 @@ img {
   top: 10rem;
   right: 5rem;
   height: 5rem;
-  position: fixed;
+  position: absolute;
   object-fit: cover;
 }
 
@@ -182,7 +185,7 @@ img {
   top: 6rem;
   right: 20rem;
   height: 5rem;
-  position: fixed;
+  position: absolute;
   object-fit: cover;
 }
 
@@ -194,19 +197,27 @@ img {
   object-fit: cover;
 }
 .login-text {
-  top: 2rem;
-  right: 2.5rem;
+  top: 1.5rem;
+  right: 2rem;
   width: 3rem;
-  position: fixed;
+  position: absolute;
   object-fit: cover;
   z-index: 2;
 }
 
 .login-button {
-  position: fixed;
+  position: absolute;
   top: 0rem;
   right: 0rem;
   margin: 0.5rem;
+}
+
+.blank-footer {
+  width: 100%;
+  height: 5rem;
+  background-color: aqua;
+  position: absolute;
+  bottom: 0rem;
 }
 
 
