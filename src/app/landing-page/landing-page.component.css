@@ -1,4 +1,4 @@
-.langing-page {
+/* .langing-page {
     margin: 0rem 5rem;
     display: flex;
     overflow: hidden;
@@ -90,4 +90,123 @@ img {
   .one-stop {
     margin-bottom: 35rem;
   }
+} */
+
+.landing-page {
+  color: #ffffff;
+  width: 100%;
+  min-height: 100vh;
 }
+
+.top-banner {
+  position: fixed;
+  width: 100%;
+  top: -5rem;
+  object-fit: cover;
+}
+
+.logo {
+  position: fixed;
+  top: 0rem;
+  width: 5rem;
+  margin: 1rem;
+  object-fit: cover;
+}
+
+.banner-text {
+  top: 11rem;
+  left: 8rem;
+  height: 30rem;
+  position: fixed;
+  object-fit: cover;
+}
+
+.red-circle {
+  top: 22rem;
+  right: 0rem;
+  width: 5rem;
+  position: fixed;
+  object-fit: cover;
+}
+
+.violet-circle {
+  top: 19rem;
+  right: 0rem;
+  width: 8rem;
+  position: absolute;
+  object-fit: cover;
+}
+
+.green-circle {
+  top: 16rem;
+  right: 0rem;
+  width: 11rem;
+  position: fixed;
+  object-fit: cover;
+}
+
+.orange-circle {
+  top: 13rem;
+  right: 0rem;
+  width: 14rem;
+  position: absolute;
+  object-fit: cover;
+}
+
+.mobile-vector {
+  top: 10rem;
+  right: 7rem;
+  height: 40rem;
+  position: fixed;
+  object-fit: cover;
+}
+
+
+.instagram {
+  top: 20rem;
+  left: 65rem;
+  height: 5rem;
+  position: fixed;
+  object-fit: cover;
+}
+
+.twitter {
+  top: 10rem;
+  left: 85rem;
+  height: 5rem;
+  position: fixed;
+  object-fit: cover;
+}
+
+.facebook {
+  top: 6rem;
+  left: 70rem;
+  height: 5rem;
+  position: fixed;
+  object-fit: cover;
+}
+
+.login-background {
+  top: 1rem;
+  right: 1rem;
+  width: 5rem;
+  position: relative;
+  object-fit: cover;
+}
+.login-text {
+  top: 2rem;
+  right: 2.5rem;
+  width: 3rem;
+  position: fixed;
+  object-fit: cover;
+  z-index: 2;
+}
+
+.login-button {
+  position: fixed;
+  top: 0rem;
+  right: 0rem;
+  margin: 0.5rem;
+}
+
+

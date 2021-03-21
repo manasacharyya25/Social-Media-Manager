@@ -15,7 +15,6 @@ export class SettingsComponent implements OnInit, OnDestroy {
   userId: number;
 
   constructor(private httpClient: HttpClient, private socialService: SocialService) { 
-    this.userId = +localStorage.getItem("user_id");
     // this.userSettings = new UserSettings(this.userId);
     this.socialService.platformIntegrated.subscribe((didPlatformIntegrate:String) => this.platformIntegrated(didPlatformIntegrate));
   }
@@ -38,6 +37,8 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
   setUserSettings(userSettings: UserSettings): void {
+    this.userId = +localStorage.getItem("user_id");
+
     userSettings.userId =  this.userId;
 
     this.httpClient.post(
