@@ -8,7 +8,7 @@ export class AuthenticationGuard implements CanActivate{
 
     canActivate(): boolean {
         if (!(localStorage.getItem("IsLoggedIn")==="true")){
-            this.router.navigate(['login']);
+            this.router.navigate(['landing-page']);
             return false;
         }
         return true;
