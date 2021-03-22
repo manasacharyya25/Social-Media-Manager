@@ -12,14 +12,14 @@ import { SocialService } from '../socialService';
 export class SettingsComponent implements OnInit, OnDestroy {
   isLoading: boolean;
   userSettings: UserSettings;
-  userId: number;
+  userId: String;
 
   constructor(private httpClient: HttpClient, private socialService: SocialService) { 
-    // this.userSettings = new UserSettings(this.userId);
     this.socialService.platformIntegrated.subscribe((didPlatformIntegrate:String) => this.platformIntegrated(didPlatformIntegrate));
   }
 
   ngOnInit(): void {
+    this.userId = localStorage.getItem("user_id");
     this.getUserSettings(this.userId);
   }
 
@@ -28,16 +28,18 @@ export class SettingsComponent implements OnInit, OnDestroy {
   }
 
 
-  getUserSettings(user_id: number) : void {
-    this.httpClient.get(
+  async getUserSettings(user_id: String) {
+    this.isLoading = true;
+    await this.httpClient.get(
       `${AppConfiguration.BACKEND_ENDPOINT}/users/settings/${user_id}`
-    ).subscribe( (response: UserSettings) => {
+    ).toPromise().then( (response: UserSettings) => {
+      this.isLoading = false;
       this.userSettings = response;
-    })
+    }).catch(error => this.isLoading = false);
   }
 
   setUserSettings(userSettings: UserSettings): void {
-    this.userId = +localStorage.getItem("user_id");
+    this.userId = localStorage.getItem("user_id");
 
     userSettings.userId =  this.userId;
 

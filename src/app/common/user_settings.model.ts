@@ -1,5 +1,5 @@
 export class UserSettings {
-    userId: number;
+    userId: String;
     facebookIntegrated: boolean;
     instagramIntegrated: boolean;
     tumblrIntegrated: boolean;
@@ -7,7 +7,7 @@ export class UserSettings {
     redditIntegrated: boolean;
     linkedinIntegrated: boolean;
 
-    constructor(userId: number) {
+    constructor(userId: String) {
         this.userId = userId;
     }
 }

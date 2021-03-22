@@ -1,3 +1,9 @@
+<div class="overlay-container animate__animated animate__fadeIn" *ngIf="isLoading">
+  <div class="loading spinner-grow text-secondary" role="status">
+    <span class="sr-only">Loading...</span>
+  </div>
+</div>
+
 <div class="side-bar">
     <div class="integrate-link"></div>
     <div class="integrate-link1">
@@ -95,10 +101,4 @@
     </div>
 
     <div class="integrate-link7"></div>
-</div>
-  
-<div class="overlay-container animate__animated animate__fadeIn" *ngIf="isLoading">
-  <div class="loading spinner-grow text-secondary" role="status">
-    <span class="sr-only">Loading...</span>
-  </div>
 </div>
