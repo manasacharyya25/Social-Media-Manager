@@ -163,13 +163,35 @@ img {
   object-fit: cover;
 }
 
-
 .instagram {
   top: 20rem;
   right: 25rem;
   height: 5rem;
   position: absolute;
   object-fit: cover;
+}
+
+/* Flashing */
+.logo:hover {
+	opacity: 1;
+	-webkit-animation: flash 1.5s;
+	animation: flash 1.5s;
+}
+@-webkit-keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+@keyframes flash {
+	0% {
+		opacity: .4;
+	}
+	100% {
+		opacity: 1;
+	}
 }
 
 .twitter {
